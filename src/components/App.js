@@ -3,38 +3,24 @@ import '../scss/App.scss';
 import Rectangle from './Rectangle';
 import Circle from './Circle';
 import { connect } from 'react-redux';
-import { updateClicks } from '../actions';
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { clicked: 0 };
-  }
-
-  somebodyClicked = () => {
-    const totalClicks = this.state.clicked + 1;
-    this.setState({ clicked: totalClicks });
-  };
-
-  render() {
-    return (
-      <div className="app">
-        <div className="parent">
-          <h5>APP.JS</h5>
-          <p>You clicked {this.state.clicked} times</p>
-        </div>
-        <Rectangle data={this.state.clicked}></Rectangle>
-        <Circle
-          handleClick={this.somebodyClicked}
-          data={this.state.clicked}
-        ></Circle>
+const App = (props) => {
+  console.log('APP.JS PROPS: ', props);
+  return (
+    <div className="app">
+      <div className="parent">
+        <h5>APP.JS</h5>
+        <p>You clicked {props.clicked} times</p>
       </div>
-    );
-  }
-}
+      <Rectangle></Rectangle>
+      <Circle></Circle>
+    </div>
+  );
+};
 
 const mapsStateToProps = (state) => {
+  console.log('APP.JS: I got the new state: ', state);
   return state;
 };
 
-export default connect(mapsStateToProps, { updateClicks })(App);
+export default connect(mapsStateToProps)(App);
