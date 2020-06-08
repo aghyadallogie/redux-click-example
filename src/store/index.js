@@ -1,5 +1,5 @@
 import { createStore } from 'redux';
-import clickReducer from '../reducers/clickReducer';
+import clickReducer from '../reducers';
 
 const store = createStore(clickReducer);
 
