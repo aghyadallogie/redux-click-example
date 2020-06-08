@@ -2,6 +2,8 @@ import React from 'react';
 import '../scss/App.scss';
 import Rectangle from './Rectangle';
 import Circle from './Circle';
+import { connect } from 'react-redux';
+import { updateClicks } from '../actions';
 
 class App extends React.Component {
   constructor(props) {
@@ -31,4 +33,8 @@ class App extends React.Component {
   }
 }
 
-export default App;
+const mapsStateToProps = (state) => {
+  return state;
+};
+
+export default connect(mapsStateToProps, { updateClicks })(App);
