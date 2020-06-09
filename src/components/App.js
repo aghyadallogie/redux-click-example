@@ -1,34 +1,21 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import '../scss/App.scss';
 import Rectangle from './Rectangle';
 import Circle from './Circle';
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { clicked: 0 };
-  }
-
-  somebodyClicked = () => {
-    const totalClicks = this.state.clicked + 1;
-    this.setState({ clicked: totalClicks });
-  };
-
-  render() {
-    return (
-      <div className="app">
-        <div className="parent">
-          <h5>APP.JS</h5>
-          <p>You clicked {this.state.clicked} times</p>
-        </div>
-        <Rectangle data={this.state.clicked}></Rectangle>
-        <Circle
-          handleClick={this.somebodyClicked}
-          data={this.state.clicked}
-        ></Circle>
+const App = ({ clicked }) => {
+  return (
+    <div className="app">
+      <div className="parent">
+        <h5>APP.JS</h5>
+        <p>You clicked {clicked} times</p>
       </div>
-    );
-  }
+      <Rectangle></Rectangle>
+      <Circle></Circle>
+    </div>
+  );
 }
 
-export default App;
+const mapStateToProps = state => state;
+export default connect(mapStateToProps)(App);
